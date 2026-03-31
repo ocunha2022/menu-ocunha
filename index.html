@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Menu O'CUNHA</title>
+
+<style>
+body {
+  background:#0b0b0b;
+  font-family: Georgia, serif;
+  color:white;
+  padding:20px;
+  margin:0;
+}
+
+h1 {
+  text-align:center;
+  color:#e6c27a;
+  letter-spacing:3px;
+}
+
+.category {
+  margin-top:30px;
+}
+
+.category h2 {
+  color:#e6c27a;
+  border-bottom:1px solid #333;
+  padding-bottom:5px;
+}
+
+.item {
+  display:flex;
+  justify-content:space-between;
+  padding:8px 0;
+  font-size:18px;
+}
+
+.price {
+  color:#e6c27a;
+}
+
+.loader {
+  text-align:center;
+  margin-top:50px;
+  color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<h1>O'CUNHA</h1>
+
+<div id="menu">
+  <div class="loader">A carregar menu...</div>
+</div>
+
+<script>
+
+const url = "https://opensheet.elk.sh/1-0TGjRLQaRqQACX60c44soR7N76XhOve0bO0f8nk17k/Sheet1";
+
+fetch(url)
+  .then(res => res.json())
+  .then(data => {
+
+    const container = document.getElementById("menu");
+    container.innerHTML = "";
+
+    const grouped = {};
+
+    data.forEach(item => {
+      if(!grouped[item.Categoria]) {
+        grouped[item.Categoria] = [];
+      }
+      grouped[item.Categoria].push(item);
+    });
+
+    for (let category in grouped) {
+
+      const div = document.createElement("div");
+      div.className = "category";
+
+      div.innerHTML = `<h2>${category}</h2>`;
+
+      grouped[category].forEach(item => {
+        div.innerHTML += `
+          <div class="item">
+            <span>${item.Produto}</span>
+            <span class="price">${item.Preço}</span>
+          </div>
+        `;
+      });
+
+      container.appendChild(div);
+    }
+
+  })
+  .catch(() => {
+    document.getElementById("menu").innerHTML = "Erro ao carregar menu.";
+  });
+
+</script>
+
+</body>
+</html>
