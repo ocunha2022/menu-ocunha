@@ -72,10 +72,23 @@ fetch(url)
     const grouped = {};
 
     data.forEach(item => {
-      if(!grouped[item.Categoria]) {
-        grouped[item.Categoria] = [];
+
+      const categoria = item.Categoria?.trim();
+      const produto = item.Produto?.trim();
+      const preco = item.Preco?.trim();
+
+      // ignora linhas inválidas
+      if (!categoria || !produto) return;
+
+      if (!grouped[categoria]) {
+        grouped[categoria] = [];
       }
-      grouped[item.Categoria].push(item);
+
+      grouped[categoria].push({
+        produto,
+        preco
+      });
+
     });
 
     for (let category in grouped) {
@@ -88,8 +101,8 @@ fetch(url)
       grouped[category].forEach(item => {
         div.innerHTML += `
           <div class="item">
-            <span>${item.Produto}</span>
-            <span class="price">${item.Preço}</span>
+            <span>${item.produto}</span>
+            <span class="price">${item.preco || ""}</span>
           </div>
         `;
       });
