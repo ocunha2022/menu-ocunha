@@ -24,21 +24,22 @@ body {
   margin:auto;
 }
 
-/* LOGO FINAL (SEM HACKS) */
+/* LOGO FINAL LIMPO */
 .logo {
   display:flex;
   justify-content:center;
-  align-items:center;
   margin:10px auto 25px;
+  overflow:hidden; /* IMPORTANTE */
 }
 
 .logo img {
-  width:100%;
-  max-width:340px; /* mais largo, mais presença */
+  width:102%; /* aumenta ligeiramente */
+  max-width:350px;
   height:auto;
   display:block;
 
-  /* leve profundidade elegante */
+  transform: translateX(-1%); /* compensa o aumento */
+
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
 }
 
