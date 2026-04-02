@@ -24,24 +24,22 @@ body {
   margin:auto;
 }
 
-/* LOGO SEM FUNDO (MASK) */
+/* LOGO FINAL */
 .logo {
-  display:flex;
-  justify-content:center;
-  margin-bottom:20px;
+  text-align:center;
+  margin-top:10px;
+  margin-bottom:30px;
 }
 
-.logo-mask {
-  width:260px;
-  height:120px;
+.logo img {
+  width:240px;
+  max-width:80%;
+  display:block;
+  margin:auto;
 
-  background: linear-gradient(180deg, #ffffff, #c6a15b);
+  opacity:0.95;
 
-  -webkit-mask: url("logo.png") center/contain no-repeat;
-  mask: url("logo.png") center/contain no-repeat;
-
-  /* corta espaço extra */
-  transform: scale(1.15);
+  filter: drop-shadow(0 0 8px rgba(0,0,0,0.6));
 }
 
 /* ACORDEÃO */
@@ -69,12 +67,14 @@ body {
   transform: rotate(180deg);
 }
 
+/* CONTEÚDO */
 .accordion-content {
   max-height:0;
   overflow:hidden;
   transition: max-height 0.35s ease;
 }
 
+/* ITENS */
 .item {
   display:flex;
   justify-content:space-between;
@@ -91,6 +91,7 @@ body {
   color:#c6a15b;
 }
 
+/* LOADER */
 .loader {
   text-align:center;
   margin-top:50px;
@@ -105,7 +106,7 @@ body {
 <div class="container">
 
 <div class="logo">
-  <div class="logo-mask"></div>
+  <img src="logo_ocunha_transparente.png" alt="O'CUNHA">
 </div>
 
 <div id="menu">
