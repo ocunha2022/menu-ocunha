@@ -24,25 +24,24 @@ body {
   margin:auto;
 }
 
+/* LOGO SEM FUNDO (MASK) */
 .logo {
-  text-align:center;
-  margin-bottom:10px;
-  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  margin-bottom:20px;
 }
 
-.logo img {
+.logo-mask {
   width:260px;
-  display:block;
-  margin:auto;
+  height:120px;
 
-  /* PASSO 1: inverter cores */
-  filter: invert(1) brightness(1.2) contrast(1.1);
+  background: linear-gradient(180deg, #ffffff, #c6a15b);
 
-  /* PASSO 2: misturar com fundo */
-  mix-blend-mode: screen;
+  -webkit-mask: url("logo.png") center/contain no-repeat;
+  mask: url("logo.png") center/contain no-repeat;
 
-  /* PASSO 3: cortar espaço morto */
-  transform: scale(1.3);
+  /* corta espaço extra */
+  transform: scale(1.15);
 }
 
 /* ACORDEÃO */
@@ -70,14 +69,12 @@ body {
   transform: rotate(180deg);
 }
 
-/* CONTEÚDO */
 .accordion-content {
   max-height:0;
   overflow:hidden;
   transition: max-height 0.35s ease;
 }
 
-/* ITENS */
 .item {
   display:flex;
   justify-content:space-between;
@@ -94,7 +91,6 @@ body {
   color:#c6a15b;
 }
 
-/* LOADER */
 .loader {
   text-align:center;
   margin-top:50px;
@@ -109,7 +105,7 @@ body {
 <div class="container">
 
 <div class="logo">
-  <img src="logo.png">
+  <div class="logo-mask"></div>
 </div>
 
 <div id="menu">
