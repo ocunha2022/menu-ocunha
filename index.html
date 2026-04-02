@@ -27,22 +27,13 @@ body {
 /* LOGO */
 .logo {
   text-align:center;
-  margin-bottom:25px;
+  margin-bottom:35px;
 }
 
 .logo img {
   width:260px;
-
-  /* remove fundo preto visualmente */
   mix-blend-mode: lighten;
   filter: contrast(1.1) brightness(1.1);
-}
-
-.logo-line {
-  height:1px;
-  width:140px;
-  margin:15px auto;
-  background:linear-gradient(to right, transparent, #c6a15b, transparent);
 }
 
 /* ACORDEÃO */
@@ -58,25 +49,9 @@ body {
   cursor:pointer;
   color:#c6a15b;
   font-size:20px;
+  letter-spacing:1px;
 }
 
-.header-left {
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-/* ÍCONES PREMIUM SVG */
-.icon {
-  width:22px;
-  height:22px;
-  stroke:#c6a15b;
-  fill:none;
-  stroke-width:1.6;
-  opacity:0.9;
-}
-
-/* seta */
 .accordion-header span {
   transition: transform 0.3s ease;
   color:#7a5c2c;
@@ -86,14 +61,14 @@ body {
   transform: rotate(180deg);
 }
 
-/* conteúdo */
+/* CONTEÚDO */
 .accordion-content {
   max-height:0;
   overflow:hidden;
   transition: max-height 0.35s ease;
 }
 
-/* items */
+/* ITENS */
 .item {
   display:flex;
   justify-content:space-between;
@@ -110,7 +85,7 @@ body {
   color:#c6a15b;
 }
 
-/* loader */
+/* LOADER */
 .loader {
   text-align:center;
   margin-top:50px;
@@ -126,7 +101,6 @@ body {
 
 <div class="logo">
   <img src="logo.png">
-  <div class="logo-line"></div>
 </div>
 
 <div id="menu">
@@ -138,59 +112,6 @@ body {
 <script>
 
 const url = "https://opensheet.elk.sh/1-0TGjRLQaRqQACX60c44soR7N76XhOve0bO0f8nk17k/1";
-
-/* ÍCONES SVG PREMIUM (estilo igual ao mock) */
-const icons = {
-
-BEBIDAS: `<svg class="icon" viewBox="0 0 24 24">
-<path d="M4 4h16l-2 6H6z"/><path d="M6 10h12l-1 10H7z"/>
-</svg>`,
-
-CERVEJAS: `<svg class="icon" viewBox="0 0 24 24">
-<path d="M6 4h8v16H6z"/><path d="M14 6h3a3 3 0 010 6h-3"/>
-</svg>`,
-
-WHISKYS: `<svg class="icon" viewBox="0 0 24 24">
-<path d="M7 3h10l-1 18H8z"/>
-</svg>`,
-
-GINS: `<svg class="icon" viewBox="0 0 24 24">
-<path d="M12 3l6 18H6z"/>
-</svg>`,
-
-VODKAS: `<svg class="icon" viewBox="0 0 24 24">
-<path d="M9 3h6v18H9z"/>
-</svg>`,
-
-COCKTAILS: `<svg class="icon" viewBox="0 0 24 24">
-<path d="M3 4h18l-7 8v6h-4v-6z"/>
-</svg>`,
-
-LICORES: `<svg class="icon" viewBox="0 0 24 24">
-<path d="M8 3h8v18H8z"/>
-</svg>`,
-
-AGUARDENTES: `<svg class="icon" viewBox="0 0 24 24">
-<path d="M12 3l4 18H8z"/>
-</svg>`,
-
-PORTOS: `<svg class="icon" viewBox="0 0 24 24">
-<path d="M7 3h10l-1 18H8z"/>
-</svg>`,
-
-VINHOS: `<svg class="icon" viewBox="0 0 24 24">
-<path d="M8 3h8v6a4 4 0 01-8 0z"/><path d="M12 13v8"/>
-</svg>`,
-
-ESPUMANTE: `<svg class="icon" viewBox="0 0 24 24">
-<path d="M12 3v18"/><path d="M8 7h8"/>
-</svg>`,
-
-RUM: `<svg class="icon" viewBox="0 0 24 24">
-<path d="M10 3h4v18h-4z"/>
-</svg>`
-
-};
 
 fetch(url)
   .then(res => res.json())
@@ -226,10 +147,7 @@ fetch(url)
       header.className = "accordion-header";
 
       header.innerHTML = `
-        <div class="header-left">
-          ${icons[category] || ""}
-          <div>${category}</div>
-        </div>
+        <div>${category}</div>
         <span>▼</span>
       `;
 
