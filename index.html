@@ -24,11 +24,11 @@ body {
   margin:auto;
 }
 
-/* LOGO LIMPO E RECORTADO */
+/* LOGO */
 .logo {
   display:flex;
   justify-content:center;
-  margin:10px 0 30px;
+  margin:5px 0 25px;
   overflow:hidden;
 }
 
@@ -37,16 +37,11 @@ body {
   max-width:80%;
   display:block;
 
-  /* corte preciso (remove halo e margens) */
-  clip-path: inset(4% 5% 4% 5%);
+  /* corte só em cima e em baixo */
+  clip-path: inset(12% 0% 12% 0%);
 
-  /* ajusta ligeiramente tons */
-  filter:
-    brightness(0.97)
-    contrast(1.08);
-
-  /* mantém definição */
-  image-rendering: -webkit-optimize-contrast;
+  /* remove ligeiro halo */
+  filter: brightness(0.97) contrast(1.08);
 }
 
 /* ACORDEÃO */
