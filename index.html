@@ -7,80 +7,155 @@
 <title>Menu O'CUNHA</title>
 
 <style>
+
+/* === BASE === */
 body {
-  background:#0b0b0b;
-  font-family: Georgia, serif;
-  color:white;
-  padding:20px;
   margin:0;
+  padding:20px;
+  font-family: Georgia, serif;
+  color:#ddd;
+
+  /* textura + cor */
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.03), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.02), transparent 40%),
+    #0b0b0b;
 }
 
-h1 {
+/* === CONTAINER === */
+.container {
+  max-width:600px;
+  margin:auto;
+}
+
+/* === LOGO SVG === */
+.logo {
   text-align:center;
-  color:#e6c27a;
-  letter-spacing:3px;
   margin-bottom:30px;
 }
 
-/* Acordeão */
+.logo svg {
+  width:220px;
+  fill:#c6a15b;
+}
+
+.logo-line {
+  height:1px;
+  width:120px;
+  margin:15px auto;
+  background:linear-gradient(to right, transparent, #7a5c2c, transparent);
+}
+
+/* === ACORDEÃO === */
 .accordion {
-  border-bottom:1px solid #333;
-  margin-bottom:10px;
+  border-bottom:1px solid #2a2a2a;
 }
 
 .accordion-header {
   display:flex;
   justify-content:space-between;
+  align-items:center;
+  padding:14px 0;
   cursor:pointer;
-  padding:12px 0;
+  color:#c6a15b;
   font-size:20px;
-  color:#e6c27a;
+}
+
+.header-left {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.icon {
+  width:22px;
+  height:22px;
+  fill:#c6a15b;
+  opacity:0.9;
 }
 
 .accordion-header span {
   transition: transform 0.3s ease;
+  color:#7a5c2c;
 }
 
 .accordion.open .accordion-header span {
   transform: rotate(180deg);
 }
 
+/* === CONTEÚDO === */
 .accordion-content {
   max-height:0;
   overflow:hidden;
-  transition: max-height 0.4s ease;
+  transition: max-height 0.35s ease;
 }
 
+/* === ITENS === */
 .item {
   display:flex;
   justify-content:space-between;
-  padding:8px 0;
-  font-size:18px;
+  padding:10px 0;
+  border-bottom:1px solid #1a1a1a;
+  font-size:17px;
+}
+
+.item:last-child {
+  border-bottom:none;
 }
 
 .price {
-  color:#e6c27a;
+  color:#c6a15b;
 }
 
+/* === LOADER === */
 .loader {
   text-align:center;
   margin-top:50px;
-  color:#888;
+  color:#666;
 }
+
 </style>
 </head>
 
 <body>
 
-<h1>O'CUNHA</h1>
+<div class="container">
+
+<!-- LOGO -->
+<div class="logo">
+  <svg viewBox="0 0 300 100">
+    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="32" font-family="Georgia">
+      O'CUNHA
+    </text>
+  </svg>
+  <div class="logo-line"></div>
+</div>
 
 <div id="menu">
   <div class="loader">A carregar menu...</div>
 </div>
 
+</div>
+
 <script>
 
 const url = "https://opensheet.elk.sh/1-0TGjRLQaRqQACX60c44soR7N76XhOve0bO0f8nk17k/1";
+
+/* Ícones SVG por categoria */
+const icons = {
+  BEBIDAS: `<svg class="icon" viewBox="0 0 24 24"><path d="M3 2h18l-2 7H5L3 2zm2 9h14l-1 9H6L5 11z"/></svg>`,
+  CERVEJAS: `<svg class="icon" viewBox="0 0 24 24"><path d="M5 4h10v16H5zM15 6h3a3 3 0 010 6h-3"/></svg>`,
+  WHISKYS: `<svg class="icon" viewBox="0 0 24 24"><path d="M6 2h12l-1 20H7L6 2z"/></svg>`,
+  GINS: `<svg class="icon" viewBox="0 0 24 24"><path d="M12 2l6 20H6L12 2z"/></svg>`,
+  VODKAS: `<svg class="icon" viewBox="0 0 24 24"><path d="M9 2h6v20H9z"/></svg>`,
+  COCKTAILS: `<svg class="icon" viewBox="0 0 24 24"><path d="M3 3h18l-7 8v8h-4v-8L3 3z"/></svg>`,
+  LICORES: `<svg class="icon" viewBox="0 0 24 24"><path d="M7 2h10v20H7z"/></svg>`,
+  AGUARDENTES: `<svg class="icon" viewBox="0 0 24 24"><path d="M12 2l4 20H8L12 2z"/></svg>`,
+  PORTOS: `<svg class="icon" viewBox="0 0 24 24"><path d="M6 2h12l-1 20H7L6 2z"/></svg>`,
+  VINHOS: `<svg class="icon" viewBox="0 0 24 24"><path d="M8 2h8v6a4 4 0 01-8 0V2zM12 14v8"/></svg>`,
+  ESPUMANTE: `<svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20M8 6h8"/></svg>`,
+  RUM: `<svg class="icon" viewBox="0 0 24 24"><path d="M10 2h4v20h-4z"/></svg>`
+};
 
 fetch(url)
   .then(res => res.json())
@@ -114,8 +189,12 @@ fetch(url)
 
       const header = document.createElement("div");
       header.className = "accordion-header";
+
       header.innerHTML = `
-        <div>${category}</div>
+        <div class="header-left">
+          ${icons[category] || ""}
+          <div>${category}</div>
+        </div>
         <span>▼</span>
       `;
 
@@ -135,7 +214,6 @@ fetch(url)
 
         const isOpen = accordion.classList.contains("open");
 
-        // fechar todos (opcional — estilo "single open")
         document.querySelectorAll(".accordion").forEach(acc => {
           acc.classList.remove("open");
           acc.querySelector(".accordion-content").style.maxHeight = null;
