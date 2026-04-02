@@ -19,16 +19,36 @@ h1 {
   text-align:center;
   color:#e6c27a;
   letter-spacing:3px;
+  margin-bottom:30px;
 }
 
-.category {
-  margin-top:30px;
-}
-
-.category h2 {
-  color:#e6c27a;
+/* Acordeão */
+.accordion {
   border-bottom:1px solid #333;
-  padding-bottom:5px;
+  margin-bottom:10px;
+}
+
+.accordion-header {
+  display:flex;
+  justify-content:space-between;
+  cursor:pointer;
+  padding:12px 0;
+  font-size:20px;
+  color:#e6c27a;
+}
+
+.accordion-header span {
+  transition: transform 0.3s ease;
+}
+
+.accordion.open .accordion-header span {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height:0;
+  overflow:hidden;
+  transition: max-height 0.4s ease;
 }
 
 .item {
@@ -77,29 +97,33 @@ fetch(url)
       const produto = item.Produto?.trim();
       const preco = item.Preco?.trim();
 
-      // ignora linhas inválidas
       if (!categoria || !produto) return;
 
       if (!grouped[categoria]) {
         grouped[categoria] = [];
       }
 
-      grouped[categoria].push({
-        produto,
-        preco
-      });
+      grouped[categoria].push({ produto, preco });
 
     });
 
-    for (let category in grouped) {
+    Object.keys(grouped).forEach(category => {
 
-      const div = document.createElement("div");
-      div.className = "category";
+      const accordion = document.createElement("div");
+      accordion.className = "accordion";
 
-      div.innerHTML = `<h2>${category}</h2>`;
+      const header = document.createElement("div");
+      header.className = "accordion-header";
+      header.innerHTML = `
+        <div>${category}</div>
+        <span>▼</span>
+      `;
+
+      const content = document.createElement("div");
+      content.className = "accordion-content";
 
       grouped[category].forEach(item => {
-        div.innerHTML += `
+        content.innerHTML += `
           <div class="item">
             <span>${item.produto}</span>
             <span class="price">${item.preco || ""}</span>
@@ -107,8 +131,29 @@ fetch(url)
         `;
       });
 
-      container.appendChild(div);
-    }
+      header.addEventListener("click", () => {
+
+        const isOpen = accordion.classList.contains("open");
+
+        // fechar todos (opcional — estilo "single open")
+        document.querySelectorAll(".accordion").forEach(acc => {
+          acc.classList.remove("open");
+          acc.querySelector(".accordion-content").style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          accordion.classList.add("open");
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+
+      });
+
+      accordion.appendChild(header);
+      accordion.appendChild(content);
+
+      container.appendChild(accordion);
+
+    });
 
   })
   .catch(() => {
