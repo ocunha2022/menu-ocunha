@@ -24,12 +24,19 @@ body {
   margin:auto;
 }
 
-/* LOGO FINAL */
+/* LOGO FINAL CORRIGIDO */
 .logo {
   display:flex;
   justify-content:center;
   align-items:center;
-  margin:0 auto 20px;
+  margin:0 auto 18px;
+}
+
+/* wrapper para controlar melhor o recorte */
+.logo-wrapper {
+  display:flex;
+  justify-content:center;
+  overflow:hidden;
 }
 
 .logo img {
@@ -37,13 +44,14 @@ body {
   max-width:80%;
   display:block;
 
-  /* CORTE MAIS AGRESSIVO EM CIMA E BAIXO */
-  clip-path: inset(18% 0% 18% 0%);
+  /* CORTE MUITO MAIS AGRESSIVO */
+  clip-path: inset(28% 0% 28% 0%);
 
-  /* REMOVE HALO */
+  /* REMOVE HALO (mais forte) */
   filter:
-    brightness(0.92)
-    contrast(1.12);
+    brightness(0.88)
+    contrast(1.18)
+    saturate(0.95);
 
 }
 
@@ -108,7 +116,9 @@ body {
 <div class="container">
 
 <div class="logo">
-  <img src="./logo.png" alt="O'CUNHA">
+  <div class="logo-wrapper">
+    <img src="./logo.png" alt="O'CUNHA">
+  </div>
 </div>
 
 <div id="menu">
