@@ -24,34 +24,22 @@ body {
   margin:auto;
 }
 
-/* LOGO FINAL CORRETO */
+/* LOGO FINAL (SEM HACKS) */
 .logo {
   display:flex;
   justify-content:center;
-  margin:0 auto 20px;
-  overflow:hidden;
+  align-items:center;
+  margin:10px auto 25px;
 }
 
-/* container controla o corte */
-.logo-box {
-  width:100%;
-  max-width:320px;
-  overflow:hidden;
-  display:flex;
-  justify-content:center;
-}
-
-/* imagem */
 .logo img {
-  width:115%; /* ESTICA LATERALMENTE SEM DEFORMAR */
-  max-width:none;
+  width:100%;
+  max-width:340px; /* mais largo, mais presença */
+  height:auto;
   display:block;
 
-  /* corte só vertical */
-  clip-path: inset(22% 0% 22% 0%);
-
-  /* remove resíduos claros */
-  filter: brightness(0.94) contrast(1.12);
+  /* leve profundidade elegante */
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
 }
 
 /* ACORDEÃO */
@@ -79,12 +67,14 @@ body {
   transform: rotate(180deg);
 }
 
+/* CONTEÚDO */
 .accordion-content {
   max-height:0;
   overflow:hidden;
   transition: max-height 0.35s ease;
 }
 
+/* ITENS */
 .item {
   display:flex;
   justify-content:space-between;
@@ -101,6 +91,7 @@ body {
   color:#c6a15b;
 }
 
+/* LOADER */
 .loader {
   text-align:center;
   margin-top:50px;
@@ -115,9 +106,7 @@ body {
 <div class="container">
 
 <div class="logo">
-  <div class="logo-box">
-    <img src="./logo.png" alt="O'CUNHA">
-  </div>
+  <img src="./logo.png" alt="O'CUNHA">
 </div>
 
 <div id="menu">
