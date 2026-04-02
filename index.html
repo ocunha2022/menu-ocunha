@@ -14,8 +14,6 @@ body {
   padding:20px;
   font-family: Georgia, serif;
   color:#ddd;
-
-  /* textura + cor */
   background:
     radial-gradient(circle at 20% 20%, rgba(255,255,255,0.03), transparent 40%),
     radial-gradient(circle at 80% 80%, rgba(255,255,255,0.02), transparent 40%),
@@ -28,22 +26,22 @@ body {
   margin:auto;
 }
 
-/* === LOGO SVG === */
+/* === LOGO === */
 .logo {
   text-align:center;
-  margin-bottom:30px;
+  margin-bottom:25px;
 }
 
-.logo svg {
-  width:220px;
-  fill:#c6a15b;
+.logo img {
+  width:260px;
+  max-width:90%;
 }
 
 .logo-line {
   height:1px;
   width:120px;
   margin:15px auto;
-  background:linear-gradient(to right, transparent, #7a5c2c, transparent);
+  background:linear-gradient(to right, transparent, #c6a15b, transparent);
 }
 
 /* === ACORDEÃO === */
@@ -55,22 +53,24 @@ body {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:14px 0;
+  padding:16px 0;
   cursor:pointer;
   color:#c6a15b;
   font-size:20px;
+  letter-spacing:1px;
 }
 
 .header-left {
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
 }
 
+/* === ÍCONES (melhorados estilo premium) === */
 .icon {
-  width:22px;
-  height:22px;
-  fill:#c6a15b;
+  width:24px;
+  text-align:center;
+  font-size:18px;
   opacity:0.9;
 }
 
@@ -121,13 +121,9 @@ body {
 
 <div class="container">
 
-<!-- LOGO -->
+<!-- LOGO REAL -->
 <div class="logo">
-  <svg viewBox="0 0 300 100">
-    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="32" font-family="Georgia">
-      O'CUNHA
-    </text>
-  </svg>
+  <img src="logo.png" alt="O'CUNHA">
   <div class="logo-line"></div>
 </div>
 
@@ -141,20 +137,20 @@ body {
 
 const url = "https://opensheet.elk.sh/1-0TGjRLQaRqQACX60c44soR7N76XhOve0bO0f8nk17k/1";
 
-/* Ícones SVG por categoria */
+/* Ícones estilo elegante (mais próximos do mock inicial) */
 const icons = {
-  BEBIDAS: `<svg class="icon" viewBox="0 0 24 24"><path d="M3 2h18l-2 7H5L3 2zm2 9h14l-1 9H6L5 11z"/></svg>`,
-  CERVEJAS: `<svg class="icon" viewBox="0 0 24 24"><path d="M5 4h10v16H5zM15 6h3a3 3 0 010 6h-3"/></svg>`,
-  WHISKYS: `<svg class="icon" viewBox="0 0 24 24"><path d="M6 2h12l-1 20H7L6 2z"/></svg>`,
-  GINS: `<svg class="icon" viewBox="0 0 24 24"><path d="M12 2l6 20H6L12 2z"/></svg>`,
-  VODKAS: `<svg class="icon" viewBox="0 0 24 24"><path d="M9 2h6v20H9z"/></svg>`,
-  COCKTAILS: `<svg class="icon" viewBox="0 0 24 24"><path d="M3 3h18l-7 8v8h-4v-8L3 3z"/></svg>`,
-  LICORES: `<svg class="icon" viewBox="0 0 24 24"><path d="M7 2h10v20H7z"/></svg>`,
-  AGUARDENTES: `<svg class="icon" viewBox="0 0 24 24"><path d="M12 2l4 20H8L12 2z"/></svg>`,
-  PORTOS: `<svg class="icon" viewBox="0 0 24 24"><path d="M6 2h12l-1 20H7L6 2z"/></svg>`,
-  VINHOS: `<svg class="icon" viewBox="0 0 24 24"><path d="M8 2h8v6a4 4 0 01-8 0V2zM12 14v8"/></svg>`,
-  ESPUMANTE: `<svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20M8 6h8"/></svg>`,
-  RUM: `<svg class="icon" viewBox="0 0 24 24"><path d="M10 2h4v20h-4z"/></svg>`
+  BEBIDAS: "🥤",
+  CERVEJAS: "🍺",
+  WHISKYS: "🥃",
+  GINS: "🍸",
+  VODKAS: "🍸",
+  COCKTAILS: "🍹",
+  LICORES: "🍷",
+  AGUARDENTES: "🥃",
+  PORTOS: "🍷",
+  VINHOS: "🍷",
+  ESPUMANTE: "🍾",
+  RUM: "🥃"
 };
 
 fetch(url)
@@ -192,7 +188,7 @@ fetch(url)
 
       header.innerHTML = `
         <div class="header-left">
-          ${icons[category] || ""}
+          <div class="icon">${icons[category] || "•"}</div>
           <div>${category}</div>
         </div>
         <span>▼</span>
