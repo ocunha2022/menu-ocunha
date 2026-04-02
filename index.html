@@ -24,12 +24,12 @@ body {
   margin:auto;
 }
 
-/* LOGO */
+/* LOGO FINAL */
 .logo {
   display:flex;
   justify-content:center;
-  margin:5px 0 25px;
-  overflow:hidden;
+  align-items:center;
+  margin:0 auto 20px;
 }
 
 .logo img {
@@ -37,11 +37,14 @@ body {
   max-width:80%;
   display:block;
 
-  /* corte só em cima e em baixo */
-  clip-path: inset(12% 0% 12% 0%);
+  /* CORTE MAIS AGRESSIVO EM CIMA E BAIXO */
+  clip-path: inset(18% 0% 18% 0%);
 
-  /* remove ligeiro halo */
-  filter: brightness(0.97) contrast(1.08);
+  /* REMOVE HALO */
+  filter:
+    brightness(0.92)
+    contrast(1.12);
+
 }
 
 /* ACORDEÃO */
@@ -69,14 +72,12 @@ body {
   transform: rotate(180deg);
 }
 
-/* CONTEÚDO */
 .accordion-content {
   max-height:0;
   overflow:hidden;
   transition: max-height 0.35s ease;
 }
 
-/* ITENS */
 .item {
   display:flex;
   justify-content:space-between;
@@ -93,7 +94,6 @@ body {
   color:#c6a15b;
 }
 
-/* LOADER */
 .loader {
   text-align:center;
   margin-top:50px;
