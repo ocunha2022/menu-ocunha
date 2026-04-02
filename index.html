@@ -24,35 +24,34 @@ body {
   margin:auto;
 }
 
-/* LOGO FINAL CORRIGIDO */
+/* LOGO FINAL CORRETO */
 .logo {
   display:flex;
   justify-content:center;
-  align-items:center;
-  margin:0 auto 18px;
-}
-
-/* wrapper para controlar melhor o recorte */
-.logo-wrapper {
-  display:flex;
-  justify-content:center;
+  margin:0 auto 20px;
   overflow:hidden;
 }
 
+/* container controla o corte */
+.logo-box {
+  width:100%;
+  max-width:320px;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+}
+
+/* imagem */
 .logo img {
-  width:240px;
-  max-width:80%;
+  width:115%; /* ESTICA LATERALMENTE SEM DEFORMAR */
+  max-width:none;
   display:block;
 
-  /* CORTE MUITO MAIS AGRESSIVO */
-  clip-path: inset(28% 0% 28% 0%);
+  /* corte só vertical */
+  clip-path: inset(22% 0% 22% 0%);
 
-  /* REMOVE HALO (mais forte) */
-  filter:
-    brightness(0.88)
-    contrast(1.18)
-    saturate(0.95);
-
+  /* remove resíduos claros */
+  filter: brightness(0.94) contrast(1.12);
 }
 
 /* ACORDEÃO */
@@ -116,7 +115,7 @@ body {
 <div class="container">
 
 <div class="logo">
-  <div class="logo-wrapper">
+  <div class="logo-box">
     <img src="./logo.png" alt="O'CUNHA">
   </div>
 </div>
