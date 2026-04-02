@@ -24,22 +24,29 @@ body {
   margin:auto;
 }
 
-/* LOGO FINAL */
+/* LOGO LIMPO E RECORTADO */
 .logo {
-  text-align:center;
-  margin-top:10px;
-  margin-bottom:30px;
+  display:flex;
+  justify-content:center;
+  margin:10px 0 30px;
+  overflow:hidden;
 }
 
 .logo img {
   width:240px;
   max-width:80%;
   display:block;
-  margin:auto;
 
-  opacity:0.95;
+  /* corte preciso (remove halo e margens) */
+  clip-path: inset(4% 5% 4% 5%);
 
-  filter: drop-shadow(0 0 8px rgba(0,0,0,0.6));
+  /* ajusta ligeiramente tons */
+  filter:
+    brightness(0.97)
+    contrast(1.08);
+
+  /* mantém definição */
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* ACORDEÃO */
@@ -106,7 +113,7 @@ body {
 <div class="container">
 
 <div class="logo">
-  <img src="logo.png" alt="O'CUNHA">
+  <img src="./logo_ocunha_transparente.png" alt="O'CUNHA">
 </div>
 
 <div id="menu">
